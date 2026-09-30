@@ -1,0 +1,30 @@
+{
+  "name": "pilates-workouts-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/api/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "typecheck": "tsc --noEmit",
+    "start": "func start",
+    "dev": "tsx src/dev-server.ts",
+    "seed": "tsx src/seed.ts",
+    "seed:dry-run": "tsx src/seed.ts --dry-run",
+    "test": "tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.2.0",
+    "@azure/functions": "^4.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

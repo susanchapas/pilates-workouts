@@ -1,0 +1,27 @@
+{
+  "name": "pilates-workouts",
+  "version": "1.0.0",
+  "description": "Pilates Workout Generator - Monorepo with React client and Azure Functions API",
+  "private": true,
+  "workspaces": [
+    "api"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate-exercises.js",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspace=api",
+    "test": "node scripts/validate-exercises.js && npm run test:api",
+    "test:api": "npm run build:api && node scripts/test-api.js && npm test --workspace=api",
+    "dev:api": "npm run dev --workspace=api",
+    "build:api": "npm run build --workspace=api",
+    "seed": "npm run seed --workspace=api",
+    "seed:dry-run": "npm run seed:dry-run --workspace=api"
+  },
+  "keywords": [
+    "pilates",
+    "azure-functions",
+    "cosmosdb",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT"
+}

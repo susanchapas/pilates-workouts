@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pilates-workout-generator.azurewebsites.net/schemas/exercise.schema.json",
+  "title": "Exercise",
+  "description": "JSON document schema for a Pilates exercise stored in Azure Cosmos DB and served by the API",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "muscleGroup",
+    "difficulty",
+    "equipment",
+    "duration",
+    "instructions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the exercise document in Cosmos DB (e.g., 'PIL-CORE-001')",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the Pilates exercise",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "muscleGroup": {
+      "type": "string",
+      "description": "Primary muscle group or anatomical area targeted by the exercise",
+      "enum": [
+        "core",
+        "obliques",
+        "lower_body",
+        "upper_body",
+        "posterior_chain",
+        "full_body"
+      ]
+    },
+    "difficulty": {
+      "type": "integer",
+      "description": "Numeric difficulty tier: 1 (Beginner), 2 (Intermediate), 3 (Advanced)",
+      "enum": [1, 2, 3]
+    },
+    "equipment": {
+      "description": "Required equipment to perform the exercise (mat, bands, ball, none, reformer, weights). Can be an array or a single string.",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["mat", "bands", "ball", "none", "reformer", "weights"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        {
+          "type": "string",
+          "enum": ["mat", "bands", "ball", "none", "reformer", "weights"]
+        }
+      ]
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Standard duration of the exercise in seconds (typically 30-120 seconds)",
+      "minimum": 15,
+      "maximum": 300
+    },
+    "instructions": {
+      "type": "string",
+      "description": "Clear step-by-step execution instructions and form cues for the exercise",
+      "minLength": 10,
+      "maxLength": 1200
+    },
+    "category": {
+      "type": "string",
+      "description": "Functional Pilates category from the exercise dataset",
+      "enum": [
+        "Anterior Core & Abdominals",
+        "Obliques & Lateral Chain",
+        "Posterior Chain & Spine Extensors",
+        "Glutes, Hips & Lower Body",
+        "Upper Body, Chest & Arms",
+        "Full-Body Integration & Spinal Articulation"
+      ]
+    },
+    "targetMuscles": {
+      "type": "array",
+      "description": "Specific muscles activated during the exercise",
+      "items": {
+        "type": "string"
+      }
+    },
+    "difficultyLabel": {
+      "type": "string",
+      "description": "Human-readable label corresponding to the numeric difficulty level",
+      "enum": ["Beginner", "Intermediate", "Advanced"]
+    },
+    "focus": {
+      "description": "Workout routine focus classification used for matching and routine generation",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": ["core", "full_body", "stretch", "lower_body", "upper_body"]
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["core", "full_body", "stretch", "lower_body", "upper_body"]
+          }
+        }
+      ]
+    },
+    "reps": {
+      "type": "string",
+      "description": "Recommended repetition range or breath cycle count per set"
+    },
+    "keyCue": {
+      "type": "string",
+      "description": "Concise verbal cue for quick reference during active workout playback",
+      "maxLength": 250
+    },
+    "_rid": {
+      "type": "string",
+      "description": "Cosmos DB internal resource ID"
+    },
+    "_self": {
+      "type": "string",
+      "description": "Cosmos DB internal URI path"
+    },
+    "_etag": {
+      "type": "string",
+      "description": "Cosmos DB entity tag for optimistic concurrency"
+    },
+    "_attachments": {
+      "type": "string",
+      "description": "Cosmos DB attachments reference"
+    },
+    "_ts": {
+      "type": "integer",
+      "description": "Cosmos DB timestamp (seconds since Unix epoch)"
+    }
+  },
+  "additionalProperties": false
+}
