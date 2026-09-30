@@ -48,6 +48,19 @@ app.get('/api/health', (req: Request, res: Response) => {
 });
 
 /**
+ * Hello world endpoint
+ */
+app.get('/api/hello', (req: Request, res: Response) => {
+  const name = (req.query.name as string) || 'world';
+  res.json({
+    message: `Hello, ${name}!`,
+    timestamp: new Date().toISOString(),
+    service: 'Pilates Workout Generator API',
+  });
+});
+
+
+/**
  * GET /api/exercises
  * Query parameters:
  *  - muscleGroup: string ('core', 'obliques', etc.)

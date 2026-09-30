@@ -4,15 +4,19 @@
   "description": "Pilates Workout Generator - Monorepo with React client and Azure Functions API",
   "private": true,
   "workspaces": [
+    "client",
     "api"
   ],
   "scripts": {
+    "dev:client": "npm run dev --workspace=client",
+    "dev:api": "npm run dev --workspace=api",
+    "build": "npm run build:api && npm run build:client",
+    "build:client": "npm run build --workspace=client",
+    "build:api": "npm run build --workspace=api",
+    "typecheck": "tsc --noEmit && npm run build --workspace=client && npm run typecheck --workspace=api",
     "validate": "node scripts/validate-exercises.js",
-    "typecheck": "tsc --noEmit && npm run typecheck --workspace=api",
     "test": "node scripts/validate-exercises.js && npm run test:api",
     "test:api": "npm run build:api && node scripts/test-api.js && npm test --workspace=api",
-    "dev:api": "npm run dev --workspace=api",
-    "build:api": "npm run build --workspace=api",
     "seed": "npm run seed --workspace=api",
     "seed:dry-run": "npm run seed:dry-run --workspace=api"
   },

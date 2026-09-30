@@ -5,3 +5,5 @@
 
 import './functions/exercises';
 import './functions/generateRoutine';
+import './functions/hello';
+

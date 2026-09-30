@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Darker Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #f7fbff;
+  --color-surface: #ffffff;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-subtle: #79837e;
+  --color-line: #e2e8f0;
+  --color-brand: #2563eb;
+  --color-brand-hover: #1d4ed8;
+  --color-brand-soft: #dcebf7;
+  --color-brand-line: #93c5fd;
+  --color-success: #10b981;
+
+  --radius-card: 20px;
+  --radius-panel: 24px;
+
+  --shadow-card: 0 6px 18px 0 rgb(15 23 42 / 0.06);
+  --shadow-card-selected: 0 8px 24px 0 rgb(15 23 42 / 0.07);
+  --shadow-soft: 8px 8px 20px 0 rgb(15 23 42 / 0.06), -8px -8px 20px 0 #fff;
+  --shadow-brand: 0 8px 20px 0 rgb(37 99 235 / 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display font-bold;
+  }
+}
+
+@utility btn {
+  @apply inline-flex h-12 items-center justify-center gap-2.5 rounded-full px-[22px] text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand text-white shadow-brand hover:bg-brand-hover disabled:bg-line disabled:text-subtle disabled:shadow-none;
+}
+
+@utility btn-secondary {
+  @apply btn border border-line bg-surface text-ink shadow-card hover:border-brand-line;
+}
+
+@utility card {
+  @apply rounded-card border border-line bg-surface shadow-card;
+}
+
+@utility card-option {
+  @apply card text-left transition-all hover:border-brand-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+
+  &[aria-pressed="true"] {
+    @apply border-brand-line bg-brand-soft shadow-card-selected;
+  }
+}
+
+@utility chip {
+  @apply inline-flex items-center rounded-full border border-line bg-surface px-[15px] py-2.5 text-[13px] font-medium text-muted transition-colors hover:border-brand-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+
+  &[aria-pressed="true"] {
+    @apply border-brand-line bg-brand-soft font-semibold text-brand;
+  }
+}
+
+@utility badge {
+  @apply inline-flex items-center rounded-full border border-brand-line bg-brand-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.2px] text-brand;
+}
+
+@utility eyebrow {
+  @apply text-[11px] font-bold tracking-[1.5px] text-brand uppercase;
+}
