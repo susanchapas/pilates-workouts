@@ -20,6 +20,11 @@ const PORT = process.env.PORT || 7071;
 app.use(cors());
 app.use(express.json());
 
+// Root endpoint to prevent "Cannot GET /" confusion
+app.get('/', (req, res) => {
+  res.send('Pilates API is running. Try accessing <a href="/api/health">/api/health</a> or <a href="/api/exercises">/api/exercises</a>.');
+});
+
 const VALID_MUSCLE_GROUPS = [
   'core',
   'obliques',

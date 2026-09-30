@@ -13,6 +13,8 @@
   --color-brand: #2563eb;
   --color-brand-hover: #1d4ed8;
   --color-brand-soft: #dcebf7;
+  --color-brand-tint: #eaf3ff;
+  --color-brand-tint-line: #afcbff;
   --color-brand-line: #93c5fd;
   --color-success: #10b981;
 
@@ -22,6 +24,8 @@
   --shadow-card: 0 6px 18px 0 rgb(15 23 42 / 0.06);
   --shadow-card-selected: 0 8px 24px 0 rgb(15 23 42 / 0.07);
   --shadow-soft: 8px 8px 20px 0 rgb(15 23 42 / 0.06), -8px -8px 20px 0 #fff;
+  --shadow-raised: 8px 8px 18px 0 rgb(15 23 42 / 0.07), -6px -6px 12px 0 #fff;
+  --shadow-tile: 4px 4px 10px 0 rgb(15 23 42 / 0.05), -3px -3px 8px 0 #fff;
   --shadow-brand: 0 8px 20px 0 rgb(37 99 235 / 0.2);
 }
 
@@ -36,7 +40,7 @@
 }
 
 @utility btn {
-  @apply inline-flex h-12 items-center justify-center gap-2.5 rounded-full px-[22px] text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed;
+  @apply inline-flex h-12 shrink-0 items-center justify-center gap-2.5 rounded-full px-[22px] text-sm font-semibold whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed;
 }
 
 @utility btn-primary {
@@ -51,26 +55,51 @@
   @apply rounded-card border border-line bg-surface shadow-card;
 }
 
-@utility card-option {
-  @apply card text-left transition-all hover:border-brand-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
-
-  &[aria-pressed="true"] {
-    @apply border-brand-line bg-brand-soft shadow-card-selected;
-  }
+@utility panel {
+  @apply rounded-panel border border-line bg-surface shadow-soft;
 }
 
 @utility chip {
-  @apply inline-flex items-center rounded-full border border-line bg-surface px-[15px] py-2.5 text-[13px] font-medium text-muted transition-colors hover:border-brand-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  @apply inline-flex items-center rounded-full border border-brand-soft bg-surface px-[15px] py-2.5 text-[13px] font-medium text-muted transition-colors hover:border-brand-tint-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
 
   &[aria-pressed="true"] {
-    @apply border-brand-line bg-brand-soft font-semibold text-brand;
+    @apply border-brand-tint-line bg-brand-tint font-semibold text-brand;
   }
 }
 
 @utility badge {
-  @apply inline-flex items-center rounded-full border border-brand-line bg-brand-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.2px] text-brand;
+  @apply inline-flex w-fit items-center rounded-full border border-brand-line bg-brand-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.2px] whitespace-nowrap text-brand uppercase;
 }
 
 @utility eyebrow {
   @apply text-[11px] font-bold tracking-[1.5px] text-brand uppercase;
+}
+
+@utility label-caps {
+  @apply text-[10px] font-bold tracking-[1px] text-subtle uppercase;
+}
+
+@utility icon-tile {
+  @apply flex size-[34px] shrink-0 items-center justify-center rounded-xl border border-line bg-slate-50 text-brand shadow-tile;
+}
+
+@utility icon-tile-brand {
+  @apply flex size-[34px] shrink-0 items-center justify-center rounded-lg border border-brand-line bg-brand-soft text-brand shadow-tile;
+}
+
+@utility range {
+  @apply h-2 w-full cursor-pointer appearance-none rounded-full;
+  background: linear-gradient(to right, var(--color-brand) var(--fill), var(--color-line) var(--fill));
+
+  &::-webkit-slider-thumb {
+    @apply size-6 appearance-none rounded-full border-2 border-brand bg-white shadow-card-selected;
+  }
+
+  &::-moz-range-thumb {
+    @apply size-6 rounded-full border-2 border-brand bg-white shadow-card-selected;
+  }
+
+  &:focus-visible {
+    @apply outline-2 outline-offset-4 outline-brand;
+  }
 }
